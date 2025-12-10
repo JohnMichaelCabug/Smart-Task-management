@@ -1,0 +1,208 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #f3f6fb; /* page background like screenshot */
+    --panel: #ffffff; /* card/panel background */
+    --fg: #0b1724; /* main text */
+    --muted: #6b7280;
+    --border: #e6eef9;
+    --primary-500: #3b82f6;
+    --primary-600: #2563eb;
+    --accent-blue: #3b82f6;
+    --accent-orange: #f59e0b;
+    --accent-teal: #06b6d4;
+    --glass: rgba(255,255,255,0.9);
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+  }
+
+  * {
+    transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 bg-black text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-lg disabled:opacity-50 hover:scale-105 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 text-gray-800 font-semibold rounded-lg transition-all duration-200 disabled:opacity-50;
+    background: transparent;
+    border: 2px solid var(--border);
+  }
+
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-2xl hover:scale-105 border border-gray-100 dark:border-gray-700;
+  }
+
+  .card-elevated {
+    @apply card hover:shadow-2xl dark:hover:shadow-gray-900/10;
+  }
+
+  .input-modern {
+    @apply w-full px-4 py-3 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg border-2 border-gray-200 dark:border-gray-600 focus:border-gray-900 focus:outline-none transition-all duration-200 focus:shadow-lg focus:shadow-gray-900/10 placeholder-gray-500 dark:placeholder-gray-400;
+  }
+
+  .badge {
+    @apply inline-block px-3 py-1 rounded-full text-sm font-semibold transition-all duration-200 hover:shadow-lg;
+  }
+
+  .badge-primary {
+    @apply badge bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100;
+  }
+
+  .badge-success { @apply badge bg-green-100 text-green-800; }
+  .badge-warning { @apply badge bg-yellow-100 text-yellow-800; }
+  .badge-danger { @apply badge bg-red-100 text-red-800; }
+
+  .gradient-text {
+    @apply font-bold;
+    background: linear-gradient(90deg, var(--primary-500) 0%, var(--primary-600) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Override common Tailwind blue utilities to a neutral theme */
+  .from-blue-500 { --tw-gradient-from: #111827 !important; }
+  .from-blue-600 { --tw-gradient-from: #0f172a !important; }
+  .to-blue-600 { --tw-gradient-to: #374151 !important; }
+  .text-blue-100 { color: #6b7280 !important; }
+  .text-blue-500 { color: #111827 !important; }
+  .text-blue-600 { color: #111827 !important; }
+  .bg-blue-600 { background-color: #111827 !important; }
+  .bg-blue-500 { background-color: #111827 !important; }
+  .hover\:shadow-blue-500\/50:hover { box-shadow: 0 10px 25px rgba(17,24,39,0.15) !important; }
+
+  /* Additional creative animations */
+  .animate-float {
+    animation: floatUp 3s ease-in-out infinite;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+  }
+
+  .animate-wiggle:hover {
+    animation: wiggle 0.8s ease-in-out;
+  }
+  @keyframes wiggle {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+    75% { transform: rotate(-2deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  .glass-effect {
+    @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border border-white/20 dark:border-gray-700/30;
+  }
+
+  .animate-fade-in {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.6s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.6s ease-out;
+  }
+
+  .animate-bounce-in {
+    animation: bounceIn 0.6s ease-out;
+  }
+}
+
+/* ============ Global Animations ============ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* ============ Smooth Scrollbar ============ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #d1dbe8 0%, #b6c7ea 100%);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #b6c7ea 0%, #95b8f0 100%);
+  }
